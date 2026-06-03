@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import type z from 'zod';
+import NiceAvatar, { genConfig } from 'react-nice-avatar';
 
 import { ScheduleInfoItemLayout } from './scheduling/ScheduleInfoItemLayout';
 import { SessionAttendees } from './scheduling/SessionAttendees';
@@ -31,13 +32,20 @@ const ScheduleBasicInfo = ({ huber, onOpenHuberConv }: { huber: z.infer<typeof P
         {t('back')}
       </Button>
       <div className="flex items-center gap-x-2 rounded-3xl bg-neutral-98 p-4">
-        <Image
-          src={huber.photo?.path ?? '/assets/images/avatars/ava-placeholder.png'}
-          alt="avatar author"
-          width={76}
-          height={76}
-          className="size-[76px] rounded-xl object-contain"
-        />
+        {huber.photo?.path ? (
+          <Image
+            src={huber.photo.path}
+            alt="avatar author"
+            width={76}
+            height={76}
+            className="size-[76px] rounded-xl object-contain"
+          />
+        ) : (
+          <NiceAvatar
+            className="size-[76px] rounded-xl"
+            {...genConfig(huber?.fullName || 'user')}
+          />
+        )}
         <div className="flex flex-col gap-1">
           <h4 className="text-[28px] font-medium leading-9 text-primary-10">
             {huber?.fullName || ''}

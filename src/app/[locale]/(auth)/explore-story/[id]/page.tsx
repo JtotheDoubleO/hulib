@@ -93,7 +93,8 @@ export default function Index() {
                     <h5 className="line-clamp-2 text-2xl font-medium leading-9 text-primary-10">{data?.title}</h5>
                     <div className="flex items-center gap-1 lg:gap-3">
                       <Avatar
-                        imageUrl={data?.humanBook.photo?.path ?? '/assets/images/avatars/ava-placeholder.png'}
+                        imageUrl={data?.humanBook.photo?.path}
+                        name={data?.humanBook.fullName}
                         size="sm"
                         className="size-9"
                       />
